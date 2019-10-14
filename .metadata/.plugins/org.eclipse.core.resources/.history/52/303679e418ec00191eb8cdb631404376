@@ -1,0 +1,26 @@
+package com.example.demo.lock;
+
+import org.openjdk.jol.info.ClassLayout;
+
+/**
+ * 偏向锁相关
+ * @author pc
+ *
+ */
+public class BiasDemo {
+	static A a;
+	public static void main(String[] args) {
+		a = new A();
+		System.out.println("---lock before");
+		System.out.println(ClassLayout.parseInstance(a).toPrintable());
+		System.out.println("---lock after");
+		
+	}
+	
+	public static void sync(Object obj) {
+		synchronized(obj) {
+			System.out.println("随便打印点啥...");
+		}
+	}
+
+}

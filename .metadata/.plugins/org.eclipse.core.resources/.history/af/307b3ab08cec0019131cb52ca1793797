@@ -1,0 +1,20 @@
+package com.example.demo.uc;
+
+public class SynchronziedDemo {
+	
+	public static int i = 0;
+	
+	public static void main(String[] args) {
+		SynchronziedDemo demo = new SynchronziedDemo();
+		synchronized (demo) {
+			i++;
+		}
+		
+		SynchronziedDemo demo1 = new SynchronziedDemo();
+		synchronized (demo1) {
+			i++;
+		}
+		
+	}
+
+}

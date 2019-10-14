@@ -1,0 +1,14 @@
+package com.example.demo.lock;
+
+/**
+ * 偏向锁相关
+ * @author pc
+ *
+ */
+public class BiasDemo {
+	static A a;
+	public static void main(String[] args) {
+		
+	}
+
+}

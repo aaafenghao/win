@@ -1,0 +1,41 @@
+package com.example.demo.lock.weight;
+
+import org.openjdk.jol.info.ClassLayout;
+
+import com.example.demo.lock.A;
+
+public class WeightHeader {
+	
+	static A a;
+	public static void main(String[] args) throws Exception {
+		a = new A();
+		System.out.println("--- before lock");
+		System.out.println(ClassLayout.parseInstance(a).toPrintable());
+		
+		Thread thread = new Thread() {
+			@Override
+			public void run() {
+				synchronized (a) {
+					try {
+						Thread.sleep(5000);
+						System.out.println("--- release lock");
+					}catch (Exception ignore) {
+					}
+				}
+			};
+		};
+		thread.start();
+		Thread.sleep(1000);
+		
+		System.out.println("--- lock ing");
+		System.out.println(ClassLayout.parseInstance(a).toPrintable());
+	}
+	
+	public static void sync(Object obj) {
+		synchronized (obj) {
+			System.out.println("--- main lock");
+			System.out.println(ClassLayout.parseInstance(obj).toPrintable());
+		}
+	}
+
+}

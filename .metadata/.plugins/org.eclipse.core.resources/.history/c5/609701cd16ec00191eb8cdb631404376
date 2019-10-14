@@ -1,0 +1,21 @@
+package com.example.demo.lock;
+
+import org.openjdk.jol.info.ClassLayout;
+
+/**
+ * 对象头---包括mark word 和 kClass word
+ * @author pc
+ *
+ */
+public class HeaderDemo {
+	
+	public static void main(String[] args) {
+		//无锁状态下的mark word
+		A a = new A();
+		System.out.println("before hash");
+		System.out.println(ClassLayout.parseInstance(a).toPrintable());
+		//计算hash
+		System.out.println("JVM---"+Integer.toHexString(a.hashCode()));
+	}
+
+}

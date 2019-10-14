@@ -1,0 +1,16 @@
+package com.example.demo.uc;
+
+public class Demo extends Thread{
+	
+	public static int i = 0;
+	
+	
+	
+	@Override
+	public void run() {
+		synchronized (this) {
+			i++;
+		}
+	}
+
+}

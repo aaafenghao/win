@@ -1,0 +1,10 @@
+package com.example.demo.lock.weight;
+
+public class WeightHeaderWait {
+	
+	static A a;
+	public static void main(String[] args) {
+		
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.example.demo.lock.weight;
+
+public class WeightHeaderWait {
+
+}

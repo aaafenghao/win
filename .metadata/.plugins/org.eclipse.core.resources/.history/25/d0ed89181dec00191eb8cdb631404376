@@ -1,0 +1,17 @@
+package com.example.demo.lock.weight;
+
+import java.util.concurrent.CountDownLatch;
+
+/**
+ * 重量级锁
+ * @author pc
+ *
+ */
+public class WeightDemo {
+
+	static CountDownLatch latch = new CountDownLatch(100000000L);
+	
+	public static void main(String[] args) {
+		
+	}
+}

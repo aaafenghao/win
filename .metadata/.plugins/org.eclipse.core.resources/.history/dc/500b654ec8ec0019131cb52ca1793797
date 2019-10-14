@@ -1,0 +1,9 @@
+package com.example.demo.lock;
+
+import sun.misc.*;
+public class HashUtil {
+
+	public static void countHash(Object obj) {
+		
+	}
+}

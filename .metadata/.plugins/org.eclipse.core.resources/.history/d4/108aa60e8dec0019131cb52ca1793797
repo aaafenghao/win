@@ -1,0 +1,12 @@
+package com.example.demo.uc;
+
+public class SynchronziedDemo {
+	
+	public static int i = 0;
+	
+	public static void main(String[] args) {
+
+		
+	}
+
+}

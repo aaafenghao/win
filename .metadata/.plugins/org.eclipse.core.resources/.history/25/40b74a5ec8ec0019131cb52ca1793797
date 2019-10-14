@@ -1,0 +1,10 @@
+package com.example.demo.lock;
+
+import org.springframework.objenesis.instantiator.util.UnsafeUtils;
+
+public class HashUtil {
+
+	public static void countHash(Object obj) {
+		UnsafeUtils
+	}
+}
