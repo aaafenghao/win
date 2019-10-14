@@ -8,6 +8,11 @@ import com.example.demo.lock.light.B;
 /**
  *     轻量级锁  自旋锁--达到一定次数，直接膨胀为重量级锁
  *                      自适应自旋锁 -- 适应当前环境，或自选次数增加，或直接膨胀成重量级锁
+ *                      
+ *                      -XX:UseBiasedLocking
+ *                      -XX:BiasedLockingStartupDelay=0
+ *                      
+ *                      下面的转换成轻量级锁是因为偏向锁延迟，如果虚拟机启动的时候，偏向锁没有延迟，下面的代码是不会转换成轻量级锁的
  * @author pc
  *
  */
@@ -26,7 +31,8 @@ public class LightDemo {
 		a = new A();
 		System.out.println("--- lock before");
 		System.out.println(ClassLayout.parseInstance(a).toPrintable());
-		sync(a);
+		
+		sync();
 		System.out.println("--- lock after");
 		System.out.println(ClassLayout.parseInstance(a).toPrintable());
 		
@@ -65,10 +71,10 @@ public class LightDemo {
 		
 	}
 	
-	public static void sync(Object obj) {
-		synchronized (obj) {
+	public static void sync() {
+		synchronized (a) {
 			System.out.println("--- lock ing");
-			System.out.println(ClassLayout.parseInstance(obj).toPrintable());
+			System.out.println(ClassLayout.parseInstance(a).toPrintable());
 		}
 	}
 
