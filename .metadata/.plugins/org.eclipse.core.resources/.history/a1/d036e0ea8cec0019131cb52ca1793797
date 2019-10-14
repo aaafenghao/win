@@ -1,7 +1,0 @@
-package com.example.demo.uc;
-
-public class Demo {
-	
-	public static int i = 0;
-
-}

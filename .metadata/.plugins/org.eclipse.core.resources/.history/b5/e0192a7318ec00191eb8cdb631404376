@@ -1,8 +1,0 @@
-package com.example.demo.lock;
-
-public class BiasDemo {
-	public static void main(String[] args) {
-		
-	}
-
-}
