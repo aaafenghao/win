@@ -9,18 +9,10 @@ public class Demo extends Thread{
 	
 	@Override
 	public void run() {
-		synchronized (this) {
-			String name = Thread.currentThread().getName();
-			System.out.println(name+" monitor enter");
-			try {
-				Thread.sleep(10000);
-				System.out.println(name+" monitor exit");
-			}catch (Exception ignore) {
+
+			while(i<MAX) {
+				System.out.println(Thread.currentThread().getName()+"获取到:"+(i++));
 			}
-//			while(i<MAX) {
-//				System.out.println(Thread.currentThread().getName()+"获取到:"+(i++));
-//			}
 		}
 	}
 
-}
