@@ -3,7 +3,7 @@ package com.example.demo.lock;
 import org.openjdk.jol.info.ClassLayout;
 
 /**
- * 对象头---包括mark word 和 kClass word
+ * 对象头---包括mark word 和 kClass word  在64位机器上的大小是12字节(经过压缩)
  * @author pc
  *
  */
@@ -48,9 +48,11 @@ public class HeaderDemo {
 		
 		//00000001--无锁状态
 		
-		//第0个字节8位:下标1-4--分代年龄
-//		                5-5--偏向锁
-//		                6-7--锁标志位
+		//第0个字节8位:
+//		                下标:0没用
+//		                下标1-4:分代年龄
+//		                下标5-5:偏向锁
+//		                下标6-7:锁标志位
 		
 		
 	}

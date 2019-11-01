@@ -1,10 +1,8 @@
 package com.example.demo.lock.light;
 
 import org.openjdk.jol.info.ClassLayout;
-import org.springframework.util.StopWatch;
 
 import com.example.demo.lock.A;
-import com.example.demo.lock.light.B;
 /**
  *     轻量级锁  自旋锁--达到一定次数，直接膨胀为重量级锁
  *                      自适应自旋锁 -- 适应当前环境，或自选次数增加，或直接膨胀成重量级锁
