@@ -1,11 +1,13 @@
 package com.example.demo.server;
 
-import org.apache.tomcat.util.net.Nio2Channel;
-import org.omg.PortableServer.AdapterActivatorOperations;
+
+
+import com.fh.codec.MarshallingCodeCFactory;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.PooledByteBufAllocator;
 import io.netty.channel.AdaptiveRecvByteBufAllocator;
+import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
@@ -23,7 +25,10 @@ public class NettyServer {
 		EventLoopGroup work = new NioEventLoopGroup();
 		
 		ServerBootstrap server = new ServerBootstrap();
-		server.group(boss, work)
+		
+		try {
+			
+			server.group(boss, work)
 			.channel(NioServerSocketChannel.class)
 			.option(ChannelOption.SO_BACKLOG, 1024)//网络请求相关
 			.option(ChannelOption.RCVBUF_ALLOCATOR, AdaptiveRecvByteBufAllocator.DEFAULT)//字节缓冲自适应
@@ -33,10 +38,24 @@ public class NettyServer {
 
 				@Override
 				protected void initChannel(SocketChannel ch) throws Exception {
+					ch.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingDecoder());
+					ch.pipeline().addLast(MarshallingCodeCFactory.buildMarshallingEncoder());
 					ch.pipeline().addLast(new ServerHandler());
 				}
 				
 			});
+			
+			ChannelFuture cf = server.bind(8765).sync();
+			System.out.println("Server start!");
+			cf.channel().closeFuture().sync();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}finally {
+			//优雅停机
+			boss.shutdownGracefully();
+			work.shutdownGracefully();
+			System.err.println("");
+		}
 	}
 
 }
