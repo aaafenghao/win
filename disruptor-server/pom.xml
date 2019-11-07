@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>disruptor-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>disruptor-server</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -29,25 +29,18 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+<!-- 		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+			<version>3.3.2</version>
+		</dependency> -->
+
 		<dependency>
-			<groupId>org.openjdk.jol</groupId>
-			<artifactId>jol-core</artifactId>
-			<version>0.9</version>
+			<groupId>com.example</groupId>
+			<artifactId>disruptor-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
-		<!-- redis 分布式锁 -->
-		<dependency>
-            <groupId>org.redisson</groupId>
-            <artifactId>redisson-spring-boot-starter</artifactId>
-            <version>3.10.2</version>
-        </dependency>
-        
-        <dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
-		</dependency>
 	</dependencies>
 
 	<build>
