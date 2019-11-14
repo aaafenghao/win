@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.TimeUnit;
 
 public class CountDownLatchTest {
@@ -17,6 +18,7 @@ public class CountDownLatchTest {
 		
 		String origin = "BJ";
 		String dest = "SH";
+		
 		
 		Thread[] threads = new Thread[lists.size()];
 		CountDownLatch latch = new CountDownLatch(lists.size());
