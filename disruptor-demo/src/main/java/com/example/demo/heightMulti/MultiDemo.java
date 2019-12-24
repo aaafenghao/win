@@ -1,5 +1,6 @@
 package com.example.demo.heightMulti;
 
+import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -14,7 +15,7 @@ import com.lmax.disruptor.dsl.ProducerType;
 
 public class MultiDemo {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		//1、构建ringBuffer
 		RingBuffer<Order> ringBuffer = 
 				RingBuffer.create(ProducerType.MULTI, 
@@ -40,11 +41,11 @@ public class MultiDemo {
 		ringBuffer.addGatingSequences(workerPool.getWorkerSequences());
 		//6、启动workpool
 		workerPool
-		  .start(Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()));
+		  .start(Executors.newFixedThreadPool(10));
 		
 		CountDownLatch latch = new CountDownLatch(0);
 		for (int i = 0; i < 100; i++) {
-			Producer producer = new Producer();
+			Producer producer = new Producer(ringBuffer);
 			new Thread(new Runnable() {
 				
 				@Override
@@ -55,11 +56,19 @@ public class MultiDemo {
 						e.printStackTrace();
 					}
 					for (int j = 0; j < 100; j++) {
-						producer.onData();
+						producer.sendData(UUID.randomUUID().toString());
 					}
 				}
-			});
+			}).start();
 		}
+		
+		Thread.sleep(2000);
+		System.out.println("-----------线程创建完毕，开始生产数据-----------------------------------");
+		
+		latch.countDown();
+		Thread.sleep(10000);
+		System.out.println("任务总数"+consumers[2].getCount());
+		
 		
 	}
 	

@@ -1,5 +1,7 @@
 package com.example.demo.source;
 
+import java.util.HashMap;
+import java.util.Map;
 
 public class HashMapTest {
 	
@@ -8,8 +10,9 @@ public class HashMapTest {
 	
 	
 	public static void main(String[] args) {
-		int tableSizeFor = HashMapTest.tableSizeFor(33);
-		System.out.println(tableSizeFor);
+//		int tableSizeFor = HashMapTest.tableSizeFor(33);
+//		System.out.println(tableSizeFor);
+		Map<Integer,String> aa = new HashMap<Integer, String>();
 	}
 	/**
 	 * 先无符号右移,然后按位或
